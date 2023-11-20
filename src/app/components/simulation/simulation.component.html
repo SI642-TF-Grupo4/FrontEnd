@@ -1,0 +1,359 @@
+<ng-container *ngIf="entidad$| async as enti">
+
+    <div [hidden]="vercrono || verdetalle">
+        <main>
+            <button aria-label="button" class="button-back" [routerLink]="['/home', id, 'entidades-financieras']">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1>Registro de Proforma</h1>
+            <form [formGroup]="myForm" autocomplete="on" (change)="validarMoneda()">
+                <div class="form-first">
+                    <div class="element">
+                        <div class="formulario">
+                            <span class="title">Cotización para: <span
+                                    style="font-weight: bold; margin-left: 10px">{{username}}</span></span>
+
+                            <span class="title">Entidad financiera: <span
+                                    style="font-weight: bold; margin-left: 10px">{{entidad.name}}</span></span>
+                            <br>
+
+
+                            <div class="input-field">
+                                <label>Moneda</label>
+                                <select formControlName="moneda">
+                                    <option disabled selected>Seleccionar</option>
+                                    <option>S/. PEN</option>
+                                    <option>$ US</option>
+                                </select>
+                            </div>
+
+                            <div class="error-message">
+                                <span *ngIf="myForm.get('moneda')?.invalid && myForm.get('moneda')?.touched"
+                                    class="advice">
+                                    Selecciona el tipo de moneda</span>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Fecha de la primera cuota:</label>
+                                <input type="date" formControlName="fechaPrimeraCuota">
+                            </div>
+
+                            <div class="error-message">
+                                <span
+                                    *ngIf="myForm.get('fechaPrimeraCuota')?.invalid && myForm.get('fechaPrimeraCuota')?.touched"
+                                    class="advice">
+                                    Selecciona una fecha.</span>
+                            </div>
+
+                            <div class="input-field">
+                                <label>Precio del vehiculo ({{ simbo }}) </label>
+                                <input type="number" step="0.01" formControlName="price">
+                            </div>
+                            <span *ngIf="myForm.get('price')?.hasError('pattern')
+                        && myForm.get('price')?.touched" class="advice">
+                                Ingrese un numero positivo entero o decimal.</span>
+
+                            <div class="input-field">
+                                <label>Cuota inicial ({{ simbo }})</label>
+                                <input type="number" step="0.01" formControlName="cuota_initial">
+                            </div>
+
+                            <div class="input-field">
+                                <label>Tipo de tasa: </label>
+                                <select formControlName="tipo_tasa">
+                                    <option disabled selected>Seleccionar</option>
+                                    <option>Tasa Efectiva Anual</option>
+                                    <option>Tasa Nominal Anual</option>
+                                </select>
+                            </div>
+                            <span *ngIf="myForm.get('tipo_tasa')?.invalid &&
+                            myForm.get('tipo_tasa')?.touched" class="advice">
+                                Selecciona una respuesta</span>
+                            <span *ngIf="selectTipo != ''" class="advice"> {{ selectTipo }} </span>
+
+                            <div class="input-field">
+                                <label>Tasa en %: </label>
+                                <input type="number" step="0.01" formControlName="tasa" [min]="tminimo" [max]="tmaximo">
+                            </div>
+
+                            <span *ngIf="myForm.get('tasa')?.hasError('max')
+                        && myForm.get('tasa')?.touched" class="advice">
+                                La tasa es mayor a {{ tmaximo }} % </span>
+                            <span *ngIf="myForm.get('tasa')?.hasError('min')
+                        && myForm.get('tasa')?.touched" class="advice">
+                                La tasa es menor a {{ tminimo }} % </span>
+                            <span *ngIf="myForm.get('tasa')?.hasError('pattern')
+                        && myForm.get('tasa')?.touched" class="advice">
+                                Ingrese un numero positivo entero o decimal.</span>
+
+                            <div class="input-field">
+                                <label>Plazo (en meses):</label>
+                                <input type="number" step="0.01" formControlName="plazo" [min]="pminimo"
+                                    [max]="pmaximo">
+                            </div>
+                            <span *ngIf="myForm.get('plazo')?.hasError('min')
+                        && myForm.get('plazo')?.touched" class="advice">
+                                El plazo es menor a {{ pminimo }} meses. </span>
+                            <span *ngIf="myForm.get('plazo')?.hasError('max')
+                        && myForm.get('plazo')?.touched" class="advice">
+                                El plazo es mayor a {{ pmaximo }} meses. </span>
+                            <span *ngIf="myForm.get('plazo')?.hasError('pattern')
+                        && myForm.get('plazo')?.touched" class="advice">
+                                Solo puede ingresar números enteros positivos.</span>
+
+                            <div class="input-field">
+                                <label>Tipo de periodo de gracia </label>
+                                <select formControlName="tipo">
+                                    <option disabled selected>Seleccionar</option>
+                                    <option> Ninguno </option>
+                                    <option> Parcial </option>
+                                    <option> Total </option>
+
+                                </select>
+                            </div>
+                            <span *ngIf="myForm.get('tipo')?.invalid && myForm.get('tipo')?.touched" class="advice">
+                                Selecciona una respuesta</span>
+
+                            <div class="input-field">
+                                <label>Plazo de gracia (en meses):</label>
+                                <input type="number" formControlName="periodo_gracia" [min]="(ningun_plazo ? 0 : 1)"
+                                    [max]="6">
+                            </div>
+                            <span *ngIf="myForm.get('periodo_gracia')?.hasError('min')" class="advice">
+                                El valor ingresado no debe ser menor que {{ningun_plazo ? '0' : '1'}}.
+                            </span>
+                            <span *ngIf="myForm.get('periodo_gracia')?.hasError('max')" class="advice">
+                                El valor ingresado no debe ser mayor que 6.</span>
+                            <span *ngIf="!ningun_plazo && myForm.get('periodo_gracia')?.hasError('pattern')
+                        && myForm.get('periodo_gracia')?.touched" class="advice">
+                                Solo puede ingresar números enteros positivos</span>
+                        </div>
+                        <button class="boton-primary" [disabled]="myForm.invalid" type="button"
+                            (click)="calcularCuota()">
+                            Calcular cuota
+                        </button>
+
+                    </div>
+
+                    <div class="element">
+                        <div class="contenedor-2">
+
+                            <span class="title-2">Crédito Inteligente</span>
+
+                            <div class="input-field">
+                                <span class="read">
+                                    <label></label>
+                                    <input type="text" formControlName="plazo_info" readonly
+                                        style="font-size: 13px; font-weight: 600; text-align: center;">
+                                </span>
+                            </div>
+
+                            <div class="input-field">
+                                <span class="read">
+                                    <label>Cuota Inicial (%): </label>
+                                    <input type="text" formControlName="porc_cuotaini" readonly
+                                        style="text-align: center;">
+                                </span>
+                            </div>
+                            <div class="input-field">
+                                <span class="read">
+                                    <label>Monto a financiar ({{ simbo }}): </label>
+                                    <input type="text" formControlName="monto_prestamo" readonly
+                                        style="text-align: center;">
+                                </span>
+                            </div>
+                            <div class="input-field">
+                                <span class="read">
+                                    <label>* Tu cuota mensual sería:</label>
+                                    <input type="text" formControlName="cuota" readonly
+                                        style="font-size: 23px; font-weight: bold; color: #2f7086; text-align: center;">
+                                </span>
+                            </div>
+
+                            <button [disabled]="!calculado" type="button" (click)="verCronograma()"
+                                class="boton-primary">
+                                Ver cronograma
+                            </button>
+
+                            <button [disabled]="!calculado" type="button" (click)="verDetalle(true)"
+                                class="boton-primary">
+                                Ver detalle
+                            </button>
+                        </div>
+
+                        <span class="title" style="font-size: 13px; margin-top: 2rem;">
+                            (*) Incluye seguro de desgravamen, <br> seguro vehicular, gastos y comisiones.</span>
+
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <div [hidden]="!vercrono">
+        <main>
+            <button aria-label="button" class="button-back" (click)="vercrono=false">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <h1>Cronograma de Pagos Mensuales</h1>
+            <div class="vanytir">
+                <span class="title"> <strong>TIR: </strong> {{tir}}</span>
+                <span class="title"> <strong>VAN: </strong> {{van}}</span>
+            </div>
+            <div class="col-lg-6">
+                <div class="mat-elevation-z8 demo-table">
+                    <table mat-table [dataSource]="dataSource">
+
+                        <ng-container matColumnDef="nCuota">
+                            <th mat-header-cell *matHeaderCellDef> Periodo </th>
+                            <td mat-cell *matCellDef="let element">{{element.nCuota}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="fecha">
+                            <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                            <td mat-cell *matCellDef="let element">{{element.fecha}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="saldoInicial">
+                            <th mat-header-cell *matHeaderCellDef> Saldo Inicial </th>
+                            <td mat-cell *matCellDef="let element">{{element.saldoInicial}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="amortización">
+                            <th mat-header-cell *matHeaderCellDef> Amortización </th>
+                            <td mat-cell *matCellDef="let element">{{element.amortizacion}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="interes">
+                            <th mat-header-cell *matHeaderCellDef> Intereses </th>
+                            <td mat-cell *matCellDef="let element">{{element.interes}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="seguroDesgravamen">
+                            <th mat-header-cell *matHeaderCellDef> Seguro Degravamen </th>
+                            <td mat-cell *matCellDef="let element">{{element.seguroDesgravamen}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="seguroVehicular">
+                            <th mat-header-cell *matHeaderCellDef> Seguro Vehicular </th>
+                            <td mat-cell *matCellDef="let element">{{element.seguroVehicular}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="saldoFinal">
+                            <th mat-header-cell *matHeaderCellDef> Saldo Final </th>
+                            <td mat-cell *matCellDef="let element">{{element.saldoFinal}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="montoCuota">
+                            <th mat-header-cell *matHeaderCellDef> Cuota Mensual </th>
+                            <td mat-cell *matCellDef="let element">{{element.montoCuota}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons>
+                    </mat-paginator>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div [hidden]="!verdetalle">
+        <main *ngIf="frm">
+            <h1>Solicitud de crédito vehicular</h1>
+            <div class="container">
+                <div class="information">
+                    <div class="columna">
+                        <h3>Datos ingresados:</h3>
+                        <div class="dato">
+                            <span class="key">Precio del vehículo:</span>
+                            <span class="value">{{simbo}} {{frm.precio_venta}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Cuota inicial:</span>
+                            <span class="value">{{simbo}} {{frm.cuota_inicial}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Monto a financiar:</span>
+                            <span class="value">{{simbo}} {{frm.monto_financiar}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Última cuota (50% del <br> monto a financiar):</span>
+                            <span class="value">{{simbo}} {{frm.monto_financiar}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Cuotas al año:</span>
+                            <span class="value"> 12</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Periodo de pago:</span>
+                            <span class="value"> {{frm.plazo}} meses</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Tipo de Tasa:</span>
+                            <span class="value"> {{frm.tipo_tasa}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Tipo de Periodo de gracia:</span>
+                            <span class="value"> {{frm.tipo_gracia}}</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Fecha de 1° cuota:</span>
+                            <span class="value"> {{fecha}}</span>
+                        </div>
+                    </div>
+                    <div class="columna">
+                        <h3>Tarifas:</h3>
+
+                        <div class="dato">
+                            <span class="key">TEA:</span>
+                            <span class="value"> {{frm.tea.toFixed(3) }} %</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">TNA:</span>
+                            <span class="value"> {{frm.tna.toFixed(3) }} %</span>
+                        </div>
+
+                        <div class="dato">
+                            <span class="key">Tasa Seguro de <br> Desgravamen Anual:</span>
+                            <span class="value">{{frm.seguro_desgravamen}} %</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Tasa Seguro <br> Vehicular Anual:</span>
+                            <span class="value">{{frm.seguro_vehicular}} %</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">Cuota mensual: </span>
+                            <span class="value">{{simbo}} {{frm.cuota_mensual.toFixed(3) }} %</span>
+                        </div>
+                        <div class="dato">
+                            <span class="key">VAN: </span>
+                            <span class="value">{{van}}</span>
+                        </div>
+
+                        <div class="dato">
+                            <span class="key">TIR: </span>
+                            <span class="value">{{tir}}</span>
+                        </div>
+
+                        <div class="separate">
+                            <label for="terminos-condiciones">
+                                <input type="checkbox" id="terminos-condiciones" [(ngModel)]="aceptaTerminos">
+                                Acepto los Términos y Condiciones
+                            </label>
+                        </div>
+                        <div class="footer">
+                            <button class="boton-primary btn-foot" type="button"
+                                (click)="verDetalle(false)">Atrás</button>
+                            <button class="boton-primary btn-foot" type="button" (click)="finalizar()"
+                                [disabled]="!aceptaTerminos"> Finalizar</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+</ng-container>

@@ -1,0 +1,66 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "correo": "garilizbeth@gmail.com",
+      "password": "1234567",
+      "username": "Gari Lizbeth"
+    },
+    {
+      "id": 2,
+      "correo": "victoriagaribay@gmail.com",
+      "password": "12345678",
+      "username": "Victoria Garibay"
+    },
+    {
+      "id": 3,
+      "correo": "alira@gmail.com",
+      "password": "123456",
+      "username": "Angelica Lira"
+    },
+    {
+      "id": 4,
+      "correo": "theo@gmail.com",
+      "password": "123456",
+      "username": "Theo Luc Hunter"
+    }
+  ],
+  "entidades": [
+    {
+      "id": 1,
+      "name": "BBVA Continental",
+      "comision":11,
+      "seguro_deg": 0.0551,
+      "seguro_vehi": 0.2887,
+      "tasa_min": 8.49,
+      "tasa_max": 24.99
+    },
+    {
+      "id": 2,
+      "name": "Scotiabank",
+      "comision":11,
+      "seguro_deg": 0.1045,
+      "seguro_vehi": 0.5064,
+      "tasa_min": 8.99,
+      "tasa_max": 14.99
+    },
+    {
+      "id": 1,
+      "name": "Interbank",
+      "comision":11,
+      "seguroDeg": 0.0375,
+      "seguroVehi": 4.25,
+      "tasaMin": 8.49,
+      "tasaMax": 14.99
+    },
+    {
+      "id": 1,
+      "name": "Banco de Crédito del Perú",
+      "comision":11,
+      "seguro_deg": 0.0500,
+      "seguro_vehi": 7.2300,
+      "tasa_min": 10.65,
+      "tasa_max": 17.15
+    }
+  ]
+}

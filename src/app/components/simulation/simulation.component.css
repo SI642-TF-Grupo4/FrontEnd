@@ -1,0 +1,330 @@
+main {
+    background-color: #f7f0e2;
+}
+
+h1,
+h2,
+p,
+span {
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+    text-align: center;
+    margin: 1.5em auto;
+}
+
+.container {
+    width: 85%;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+}
+
+.information {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.columna>h3 {
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+.dato {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    justify-items: flex-start;
+}
+
+.dato span {
+    flex: 1 1 auto;
+}
+
+.dato>.key {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.dato>.value {
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
+}
+
+form {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.form-first {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+}
+
+.contenedor-2 {
+    width: 70%;
+    border: 2px solid #bbb9b9;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 25px;
+    border-radius: 20px;
+}
+
+.element {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario {
+    width: 100%;
+    text-align: start;
+    margin-left: 2rem;
+
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+    align-items: center;
+}
+
+.title-2 {
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.input-field {
+    align-items: center;
+}
+
+.input-field label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #114C5F;
+    margin-right: 15px;
+}
+
+.input-field input,
+select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    padding: 0 15px;
+    height: 30px;
+    margin: 8px 0;
+    background-color: #e6e6e6;
+    border: none;
+}
+
+.input-field input :focus,
+.input-field select:focus {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.13);
+}
+
+.input-field input[type=number] {
+    width: 200px;
+}
+
+.input-field select {
+    width: 200px;
+}
+
+button {
+    font-family: 'Be Vietnam', sans-serif;
+    font-size: 15px;
+    border-radius: 15px;
+    height: 45px;
+    width: 200px;
+    border: 1px solid #ffffff;
+    background-color: #2f7086;
+    color: #fff;
+    cursor: pointer;
+    margin: 1rem auto;
+    padding: 0.3rem 0;
+    align-items: center;
+}
+
+button[disabled] {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.element>button {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+
+.advice {
+    color: red;
+    font-size: 13px;
+}
+
+.button-back {
+    width: 40px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 50%;
+    position: absolute;
+    border: 1px solid rgb(90, 90, 90);
+    margin-left: 3rem;
+    margin-top: -0.2rem;
+}
+
+.read {
+    display: flex;
+    flex-direction: column;
+}
+
+.read>input[type='text'] {
+    width: 80%;
+    background-color: rgb(241, 237, 228);
+    margin: 0.7rem auto;
+}
+
+.vanytir {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.vanytir span {
+    font-size: 14px;
+    padding: 10px;
+    background-color: #4b889c;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.col-lg-6 {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.mat-mdc-table .mdc-data-table__header-row {
+    height: 56px;
+    background-color: #4b889c;
+
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 1rem;
+}
+
+.separate {
+    margin: 1.5em 1rem;
+}
+
+.btn-foot {
+    width: 150px;
+    margin-right: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+
+    .element {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-first {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        column-gap: 20px;
+        width: 80%;
+        margin: 0 auto;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .formulario {
+        margin-left: 5rem;
+    }
+
+    .content {
+        margin: 0 auto;
+        width: 85%;
+    }
+
+    .input-field {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        width: 100%;
+        text-align: start;
+        align-items: flex-start;
+    }
+
+    .input-field input[type=number] {
+        width: 77%;
+    }
+
+    .input-field select {
+        width: 85%;
+    }
+
+    .input-field label {
+        text-align: start;
+        font-size: 15px;
+    }
+
+
+}
+
+@media screen and (max-width: 400px) {
+    .formulario {
+        margin-left: 1rem;
+    }
+
+    .button-back {
+        width: 35px;
+        height: 35px;
+        margin-left: 0.4rem;
+
+    }
+}

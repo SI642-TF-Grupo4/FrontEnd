@@ -1,0 +1,73 @@
+<main>
+    <div class="header-container">
+        <img src="../../../assets/img/credito_vehicular.jpeg" alt="logo-mivivienda">
+    </div>
+
+    <div class="clearfix"></div>
+
+    <section class="section-container">
+
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6">
+
+                <div class="container-what">
+
+                    <div class="cont-what-title">
+                        <span>¿QUÉ ES?</span>
+                    </div>
+                    <p>Es un crédito hipotecario que te permite comprar cualquier vivienda, construir en terreno propio
+                        o
+                        aires independizados y mejorar tu vivienda.</p>
+
+                </div>
+
+                <div class="buttons-content">
+                    <button class="btn-content" [routerLink]="['/home', id, 'entidades-financieras']">
+                        <span>Lista de Bancos</span>
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 col-sm-6">
+                <div class="content">
+                    <div class="content-title">
+                        <div class="container-title">
+                            <span>Requisitos</span>
+                        </div>
+                    </div>
+                    <div class="icons-content">
+                        <div class="icons">
+                            <i class="fa-solid fa-circle-plus" [ngClass]="hover[0] ? 'fa-flip': ''"
+                                (mouseover)="hover[0]=true" (mouseleave)="hover[0]=false"></i>
+                            <span> Ser mayor de edad.</span>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-circle-dollar-to-slot" [ngClass]="hover[1] ? 'fa-flip': ''"
+                                (mouseover)="hover[1]=true" (mouseleave)="hover[1]=false"></i>
+                            <span> Contar con una cuota inicial mínima del 7.5% del valor de la vivienda.</span>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-credit-card" [ngClass]="hover[2] ? 'fa-flip': ''"
+                                (mouseover)="hover[2]=true" (mouseleave)="hover[2]=false"></i>
+                            <span> No tener créditos pendientes de pago con el FMV.</span>
+                        </div>
+
+                        <div class="icons">
+                            <i class="fa-solid fa-house-chimney-window" [ngClass]="hover[3] ? 'fa-flip': ''"
+                                (mouseover)="hover[3]=true" (mouseleave)="hover[3]=false"></i>
+                            <span> No ser propietario ni copropietario de otra vivienda a nivel nacional.</span>
+                        </div>
+
+                        <div class="icons">
+                            <i class="fa-solid fa-list-check" [ngClass]="hover[4] ? 'fa-flip': ''"
+                                (mouseover)="hover[4]=true" (mouseleave)="hover[4]=false"></i>
+                            <span> Ser calificado por la Entidad Financiera.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

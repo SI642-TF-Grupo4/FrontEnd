@@ -1,0 +1,131 @@
+main {
+    background-color: #f7f0e2;
+}
+h1, h2, p , span {
+    font-family: 'Be Vietnam', sans-serif;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.row h1 {
+    margin: 3rem 1em;
+    text-align: center;
+    font-size: 27px;
+}
+
+.entidades {
+    width: 70%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 auto;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    text-decoration: none;
+    color: #000;
+    width: 200px;
+    height: 200px;
+    margin: 0 0 3rem 0;
+    border: 0.5px solid #00000067;
+    box-shadow: 5px 5px 5px rgb(134, 134, 134);
+}
+.item span {
+    margin: 0 0 1em 0;
+    font-size: 17px;
+    font-weight: bold;
+
+}
+
+.item img{
+    width: 160px;
+    height: 80px;
+    border-radius: 20px;
+}
+@media screen and (max-width: 1100px) {
+
+    .entidades {
+        width: 85%;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 auto;
+    }
+
+    .item {
+        width: 190px;
+        height: 190px;
+    }
+    
+    .item img {
+        width: 120px;
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .entidades {
+        width: 80%;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 auto;
+    }
+    .item {
+        width: 170px;
+        height: 170px;
+    }
+    
+    .item img {
+        width: 110px;
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .entidades {
+        width: 80%;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 auto;
+    }
+
+    .item {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .item img {
+        width: 100px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .entidades {
+        width: 100%;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 auto;
+    }
+    
+}
