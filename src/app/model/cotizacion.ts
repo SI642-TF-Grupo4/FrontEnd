@@ -22,7 +22,7 @@ export interface Credito {
 }
 
 export interface Cuota {
-  id: number
+  $id: number
   nCuota: number
   fecha: string
   saldoInicial: string

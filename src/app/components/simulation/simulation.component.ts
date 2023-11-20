@@ -19,7 +19,7 @@ import { addDays, addMonths, format } from 'date-fns'; // Importa las funciones 
 })
 export class SimulationComponent implements OnInit {
 
-  id!: number;
+  $id!: number;
   ent!: number;
   entidad$!: Observable<Entidad>;
   entidad !: Entidad;
@@ -111,14 +111,14 @@ export interface RowCrono {
 
   ngOnInit() {
     this.route.parent?.params.subscribe((params: Params) => {
-      this.id = +params['id'];
+      this.$id = +params['id'];
     });
 
     this.route.params.subscribe((params: Params) => {
       this.ent = +params['et'];
     });
 
-    this.servUsu.getUserById(this.id)
+    this.servUsu.getUserById(this.$id)
       .subscribe((data) => {
         this.username = data.nombre + ' ' +data.apellido;
       })
@@ -208,7 +208,7 @@ export interface RowCrono {
       fechaPrimeraCuota = addDays(fechaPrimeraCuota, 1);
 
       const formu: Credito = {
-        user_id: this.id,
+        user_id: this.$id,
         fecha: fechaPrimeraCuota,
         moneda: this.myForm.get('moneda')!.value,
         //entidad: this.entidad.name,
@@ -341,7 +341,7 @@ export interface RowCrono {
       const fechaFormateada = format(fecha, 'dd/MM/yyyy');
 
       const row: Cuota = {
-        id: i,
+        $id: i,
         nCuota: i + 1,
         fecha: fechaFormateada,
         saldoInicial: this.saldo_inicial.toFixed(2),
@@ -380,7 +380,7 @@ export interface RowCrono {
       const fecha = addMonths(this.frm.fecha, i)
 
       const row: Cuota = {
-        id: i,
+        $id: i,
         nCuota: i + 1,
         fecha: format(fecha, 'yyyy-MM-dd'),
         saldoInicial: this.saldo_inicial.toFixed(2),
@@ -415,7 +415,7 @@ export interface RowCrono {
       const fecha = addMonths(this.frm.fecha, i)
 
       const row: Cuota = {
-        id: i,
+        $id: i,
         nCuota: i + 1,
         fecha: format(fecha, 'yyyy-MM-dd'),
         saldoInicial: this.saldo_inicial.toFixed(2),
@@ -451,7 +451,7 @@ export interface RowCrono {
       const fecha = addMonths(this.frm.fecha, i)
 
       const row: Cuota = {
-        id: i,
+        $id: i,
         nCuota: i + 1,
         fecha: format(fecha, 'yyyy-MM-dd'),
         saldoInicial: this.saldo_inicial.toFixed(2),
@@ -486,7 +486,7 @@ export interface RowCrono {
       const fecha = addMonths(this.frm.fecha, i)
 
       const row: Cuota = {
-        id: i,
+        $id: i,
         nCuota: i + 1,
         fecha: format(fecha, 'yyyy-MM-dd'),
         saldoInicial: this.saldo_inicial.toFixed(2),
@@ -559,7 +559,7 @@ export interface RowCrono {
     if (this.aceptaTerminos) {
 
       alert("Términos y Condiciones aceptados. ¡Proceder con Finalizar!");
-      this.router.navigate(['/home', this.id]);
+      this.router.navigate(['/home', this.$id]);
 
     } else {
 

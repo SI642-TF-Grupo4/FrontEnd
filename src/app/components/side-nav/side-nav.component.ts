@@ -13,7 +13,7 @@ import { User } from 'src/app/model/user';
 export class SideNavComponent implements OnInit {
   myForm!: FormGroup;
   user!: User;
-  id!: number;
+  $id!: number;
 
   username!: string;
 
@@ -25,12 +25,12 @@ export class SideNavComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = +params['id'];
+        this.$id = +params['id'];
       }
     );
-    console.log("sidenav "+ this.id);
+    console.log("sidenav "+ this.$id);
 
-    this.userService.getUserById(this.id)
+    this.userService.getUserById(this.$id)
     .subscribe((data) => {
       this.username = data.nombre+ ' ' + data.apellido;
     })

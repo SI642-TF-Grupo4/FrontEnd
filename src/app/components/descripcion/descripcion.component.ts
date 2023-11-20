@@ -8,16 +8,16 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class DescripcionComponent implements OnInit {
   hover: boolean[] = [false,false,false,false,false]
-  id!: number;
+  $id!: number;
 
-  
+
   constructor(private route: ActivatedRoute){
   }
 
   ngOnInit(){
     this.route.params.subscribe(
       (params: Params) => {
-        this.id = +params['id'];
+        this.$id = +params['id'];
       }
     );
   }

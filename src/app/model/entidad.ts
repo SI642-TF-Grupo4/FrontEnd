@@ -1,5 +1,5 @@
 export interface Entidad {
-    id: number
+    $id: number
     name:string
     seguroDeg: number
     seguroVehi: number

@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class UserService {
   usuario$!: Subject<User>;
-  id!: number;
+  $id!: number;
   isLoggedIn: boolean = false;
   dataUsers$!: Subject<User[]>;
   arrayUsers: User[] = [];
@@ -38,11 +38,11 @@ export class UserService {
       if (user.email == cred.email && user.password == cred.password) {
 
         this.usuario$.next(user);
-        this.id = user.id;
+        this.$id = user.$id;
         this.snackbar.open('Login correcto!', '', {
           duration: 2000,
         });
-        this.router.navigate(['/home', user.id]);
+        this.router.navigate(['/home', user.$id]);
       }
     }
 
